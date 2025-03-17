@@ -89,10 +89,15 @@ const displayWords = () => {
 
 // Function to remove a word
 const removeWord = (id: number) => {
+    const confirmDelete = confirm("Are you sure you want to delete this entry?");
+    if (!confirmDelete) return; // If the user cancels, do nothing
+
     wordList = wordList.filter((word) => word.id !== id);
     updateLocalStorage();
     displayWords();
-    resultDiv.innerHTML=""
+
+    // ✅ Clear result message when a word is removed
+    resultDiv.innerHTML = "";
 };
 
 // Event Listeners
