@@ -42,10 +42,10 @@ var displayWords = function () {
             return !word.isPalindrome;
         return true; // "all" case
     });
-    filteredList.forEach(function (word) {
+    filteredList.forEach(function (word, index) {
         var row = document.createElement("tr");
         row.className = "border-b border-gray-600";
-        row.innerHTML = "\n            <td class=\"p-3\">".concat(word.input, "</td>\n            <td class=\"p-3\">").concat(word.date, "</td>\n            <td class=\"p-3\">").concat(word.time, "</td>\n            <td class=\"p-3 ").concat(word.isPalindrome ? "text-green-400" : "text-red-400", "\">\n                ").concat(word.isPalindrome ? "Palindrome ✅" : "Not a palindrome ❌", "\n            </td>\n            <td class=\"p-3\">\n                <button onclick=\"removeWord(").concat(word.id, ")\" class=\"bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded\">\n                    Remove\n                </button>\n            </td>\n        ");
+        row.innerHTML = "\n            <td class=\"p-3\">".concat(index + 1, "</td>  <!-- \u2705 Serial Number -->\n            <td class=\"p-3\">").concat(word.input, "</td>\n            <td class=\"p-3\">").concat(word.date, "</td>\n            <td class=\"p-3\">").concat(word.time || "N/A", "</td>  <!-- \u2705 Fix for undefined time -->\n            <td class=\"p-3 ").concat(word.isPalindrome ? "text-green-400" : "text-red-400", "\">\n                ").concat(word.isPalindrome ? "Palindrome ✅" : "Not a palindrome ❌", "\n            </td>\n            <td class=\"p-3\">\n                <button onclick=\"removeWord(").concat(word.id, ")\" class=\"bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded\">\n                    Remove\n                </button>\n            </td>\n        ");
         tableBody.appendChild(row);
     });
 };
@@ -54,6 +54,7 @@ var removeWord = function (id) {
     wordList = wordList.filter(function (word) { return word.id !== id; });
     updateLocalStorage();
     displayWords();
+    resultDiv.innerHTML = "";
 };
 // Event Listeners
 btn.addEventListener("click", checkPalindrome);

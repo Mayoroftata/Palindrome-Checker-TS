@@ -40,10 +40,11 @@
     </div>
 
     <!-- Table -->
-    <div class="mt-6 w-full max-w-xl">
-        <table class="w-full bg-gray-800 rounded-lg shadow-lg">
+    <div class="mt-6 w-full max-w-xl overflow-x-auto">
+        <table class="w-full min-w-[500px] bg-gray-800 rounded-lg shadow-lg">
             <thead>
-                <tr class="bg-gray-700">
+                <tr class="bg-gray-700 text-sm md:text-base">
+                    <th class="p-3 text-left">S/N</th>
                     <th class="p-3 text-left">Word</th>
                     <th class="p-3 text-left">Date</th>
                     <th class="p-3 text-left">Time</th>
@@ -51,9 +52,10 @@
                     <th class="p-3 text-left">Action</th>
                 </tr>
             </thead>
-            <tbody id="wordTableBody"></tbody>
+            <tbody id="wordTableBody" class="text-sm md:text-base"></tbody>
         </table>
     </div>
+    
 
     <script src="script.js"></script>
 

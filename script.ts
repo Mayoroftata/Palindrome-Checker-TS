@@ -63,14 +63,15 @@ const displayWords = () => {
         return true; // "all" case
     });
 
-    filteredList.forEach((word) => {
+    filteredList.forEach((word, index) => {
         const row = document.createElement("tr");
         row.className = "border-b border-gray-600";
 
         row.innerHTML = `
+            <td class="p-3">${index + 1}</td>  <!-- ✅ Serial Number -->
             <td class="p-3">${word.input}</td>
             <td class="p-3">${word.date}</td>
-            <td class="p-3">${word.time}</td>
+            <td class="p-3">${word.time || "N/A"}</td>  <!-- ✅ Fix for undefined time -->
             <td class="p-3 ${word.isPalindrome ? "text-green-400" : "text-red-400"}">
                 ${word.isPalindrome ? "Palindrome ✅" : "Not a palindrome ❌"}
             </td>
@@ -85,11 +86,13 @@ const displayWords = () => {
     });
 };
 
+
 // Function to remove a word
 const removeWord = (id: number) => {
     wordList = wordList.filter((word) => word.id !== id);
     updateLocalStorage();
     displayWords();
+    resultDiv.innerHTML=""
 };
 
 // Event Listeners
