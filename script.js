@@ -51,9 +51,13 @@ var displayWords = function () {
 };
 // Function to remove a word
 var removeWord = function (id) {
+    var confirmDelete = confirm("Are you sure you want to delete this entry?");
+    if (!confirmDelete)
+        return; // If the user cancels, do nothing
     wordList = wordList.filter(function (word) { return word.id !== id; });
     updateLocalStorage();
     displayWords();
+    // ✅ Clear result message when a word is removed
     resultDiv.innerHTML = "";
 };
 // Event Listeners
